@@ -13,7 +13,7 @@ return {
                 name = "Sevennn Tracks",
                 text = {
                     "{C:green}#1# in #3#{} chance to gain {C:mult}+#6#{} Mult", 
-                    "per {C:attention}7{} played",
+                    "per {C:attention}7{} scored",
                     "{C:green}#2# in #4#{} chance to earn {C:money}$#7#{}", 
                     "at end of round",
                     "{C:inactive}(Currently {C:mult}+#5#{C:inactive} Mult)",
