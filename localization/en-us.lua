@@ -19,6 +19,13 @@ return {
                     "{C:inactive}(Currently {C:mult}+#5#{C:inactive} Mult)",
                 }
             },
+            j_balatism_justy = {
+                name = "Justy",
+                text = {
+                    "Gains {C:money}$#2#{} at end of round", 
+                    "{C:green}#3# in #4#{} chance for {X:mult,C:white} X#1# {} Mult", 
+                }
+            },
         }
     }
 }
