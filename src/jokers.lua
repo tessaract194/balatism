@@ -32,6 +32,28 @@ SMODS.Joker {
     end
 }
 
+SMODS.Joker {
+    key = "diorite",
+    blueprint_compat = true,
+    rarity = 2,
+    cost = 6,
+    atlas = "Balatism", pos = { x = 0, y = 0 },
+    config = { extra = { rep = 1 }},
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
+        return { vars = { card.ability.extra.rep } }
+    end,
+    calculate = function(self, card, context)
+        if context.repetition and context.cardarea == G.play then
+            if SMODS.has_enhancement(context.other_card, "m_stone") then
+                return {
+                    repetitions = card.ability.extra.rep
+                }
+            end
+        end
+    end
+}
+
 SMODS.Joker{
     key = "justy",
     blueprint_compat = false,
@@ -65,12 +87,13 @@ SMODS.Joker {
     atlas = "Balatism", pos = { x = 0, y = 0 },
     config = { extra = { odds = 2 , xmult = 0.1 }},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "balatism_wanna_be_a_rock")
         return { vars = { card.ability.extra.xmult, numerator, denominator } }
     end,
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
-            if SMODS.pseudorandom_probability(card, "balatism_wanna_be_a_rock", 1, card.ability.extra.odds) then
+            if SMODS.pseudorandom_probability(card, "balatism_wanna_be_a_rock", 1, card.ability.extra.odds) and SMODS.has_enhancement(context.other_card, "m_stone") then
                 context.other_card.ability.perma_x_mult = (context.other_card.ability.perma_x_mult or 1) + card.ability.extra.xmult
                 return {
                     extra = { message = localize("k_upgrade_ex"), colour = G.C.MULT},

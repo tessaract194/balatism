@@ -22,8 +22,16 @@ return {
             j_balatism_justy = {
                 name = "Justy",
                 text = {
-                    "Gains {C:money}$#2#{} at end of round", 
+                    "Earn {C:money}$#2#{} at end of round", 
                     "{C:green}#3# in #4#{} chance for {X:mult,C:white} X#1# {} Mult", 
+                }
+            },
+            j_balatism_diorite = {
+                name = "Diorite",
+                text = {
+                    "Retrigger all played", 
+                    "{C:attention}Stone{} cards",
+                    "{C:inactive,s:0.75}What is this? ...Diorite...{}",
                 }
             },
         }
