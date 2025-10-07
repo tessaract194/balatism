@@ -34,6 +34,15 @@ return {
                     "{C:inactive,s:0.75}What is this? ...Diorite...{}",
                 }
             },
+            j_balatism_vyrsas_froyo = {
+                name = "Vyrsa's Froyo",
+                text = {
+                    "This Joker gains {X:mult,C:white} X#2# {} Mult after", 
+                    "triggering the {C:attention}Boss Blind{}", 
+                    "ability {C:attention}#4#{C:inactive} [#3#]{} times",
+                    "{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)",
+                }
+            },
         }
     }
 }

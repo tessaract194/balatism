@@ -103,3 +103,37 @@ SMODS.Joker {
         end
     end
 }
+
+SMODS.Joker {
+    key = "vyrsas_froyo",
+    blueprint_compat = true,
+    rarity = 3,
+    cost = 8,
+    atlas = "Balatism", pos = { x = 0, y = 0 },
+    config = { extra = { xmult = 1, xmult_gain = 1, blindactiv = 4, maxblindactiv = 4 }},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {card.ability.extra.xmult, card.ability.extra.xmult_gain, card.ability.extra.blindactiv, card.ability.extra.maxblindactiv}}
+    end,
+    calculate = function(self, card, context)
+        if context.debuffed_hand or context.joker_main then
+            if G.GAME.blind.triggered then
+                card.ability.extra.blindactiv = card.ability.extra.blindactiv - 1
+                if card.ability.extra.blindactiv == 0 then
+                    card.ability.extra.blindactiv = card.ability.extra.maxblindactiv
+                    card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_gain
+                    return {
+                        message = localize('k_upgrade_ex'),
+                        colour = G.C.MULT,
+                        message_card = card,
+                        xmult = card.ability.extra.xmult
+                    }
+                end
+            end
+        end
+        if context.joker_main then
+            return {
+                xmult = card.ability.extra.xmult
+            }
+        end
+    end,
+}
