@@ -137,3 +137,68 @@ SMODS.Joker {
         end
     end,
 }
+
+SMODS.Joker{
+    key = "bubzia",
+    blueprint_compat = false,
+    rarity = 3,
+    cost = 9,
+    atlas = "Balatism", pos = { x = 0, y = 0 },
+    config = {extra = {cards = 64, current_cards = 64}},
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.cards, card.ability.extra.current_cards}}
+    end,
+    calculate = function(self, card, context)
+        if context.before then
+            card.ability.extra.current_cards = card.ability.extra.current_cards - #context.full_hand
+            if card.ability.extra.current_cards <= 0 then
+                card.ability.extra.current_cards = 0
+            end
+        end
+        if context.after then
+            if card.ability.extra.current_cards == 0 then
+                return {
+                    func = function()
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                SMODS.add_card({set = "Joker", key = 'j_balatism_antibubzia', edition = "e_negative"})
+                                SMODS.destroy_cards(card, nil, nil, true)
+                                return true
+                            end
+                        }))
+                    end
+                }
+            end
+        end
+    end,
+}
+
+SMODS.Joker{
+    key = "antibubzia",
+    blueprint_compat = true,
+    rarity = 3,
+    cost = 9,
+    no_collection = true,
+    atlas = "Balatism", pos = { x = 0, y = 0 },
+    config = {extra = {xmult = 1, xmult_gain = 0.75}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {card.ability.extra.xmult, card.ability.extra.xmult_gain}}
+    end,
+    calculate = function(self, card, context)
+        if context.remove_playing_cards and not context.blueprint then
+            local six_four = 0
+            for _, removed_card in ipairs(context.removed) do
+                if removed_card:get_id() == 4 or removed_card:get_id() == 6 then six_four = six_four + 1 end
+            end
+            if six_four > 0 then
+                card.ability.extra.xmult = card.ability.extra.xmult + six_four * card.ability.extra.xmult_gain
+                return { message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.xmult } } }
+            end
+        end
+        if context.joker_main then
+            return {
+                xmult = card.ability.extra.xmult
+            }
+        end
+    end,
+}

@@ -10,3 +10,6 @@ A Balatro mod with a ton of references to things that give me serotonin.
 | Justy           | Uncommon, $7   | Gains $8 at end of round<br>1 in 6 chance for x0 Mult                                     |     | https://youtu.be/DUp11fTCDDo |
 | Wanna Be A Rock | Uncommon, $7   | 1 in 2 chance for Stone Cards to permanently gain x0.1 mult when scored                   |     | https://youtu.be/sgFKyP9Xif0 |
 | Vyrsa's Froyo   | Rare, $8       | This Joker gains x1 Mult after triggering the Boss Blind ability 4 times                  |     | https://youtu.be/PR01kTlJX5g |
+| Bubzia          | Rare, $9       | After playing 64 cards, transform (destroys self and creates Negative Anti-Bubzia)        |     | https://youtu.be/Ja5BDtMybBA |
+| Anti-Bubzia     | Rare, $9       | This Joker gains x0.75 Mult when a 4 or 6 is destroyed (does not appear in shops)         |     | https://youtu.be/Ja5BDtMybBA |
+
